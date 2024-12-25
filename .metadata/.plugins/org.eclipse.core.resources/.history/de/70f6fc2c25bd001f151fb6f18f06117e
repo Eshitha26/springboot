@@ -1,0 +1,20 @@
+package com.tcs.mvc.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+
+public class EmployeeDetails 
+{
+@GetMapping("/employeeform")
+public String getEmployeeform()
+{
+	return "add-employee";
+}
+@PostMapping("/savedetails")
+public String saveemployee(Employee employee)
+{
+	System.out.println(employee);
+	return "done";
+}
+}

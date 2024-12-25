@@ -1,0 +1,23 @@
+spring.application.name=Springboot
+
+#connecting to port
+server.port=8181
+
+#h2 database properties
+spring.datasource.url=jdbc:h2:mem:eshi
+spring.datasource.driverClassName=org.h2.Driver 
+spring.datasource.username=sa 
+spring.datasource.password=Eshi@26
+
+#Generate queries
+spring.jpa.properties.hibernate.dialect=com.yourpackage.CustomH2Dialect
+
+#show the generated queries
+spring.jpa.show-sql=true
+
+#format the generated queries
+spring.jpa.properties.hibernate.format_sql=true
+
+#DDL properties
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=create-drop

@@ -1,0 +1,38 @@
+package com.tcs.mvc.entity;
+
+public class ProductEntity {
+	public static void main(String[] args) {
+        // Product details
+        int id = 1; // Example ID
+        String name = "Smartphone";
+        String brand = "Samsung";
+        String madeIn = "India";
+        double price = 30000; // Price per unit
+        int quantity = 50; // Number of units in stock
+        double discountRate = 20; // Discount rate in percentage
+        double taxRate = 18; // Tax rate in percentage
+
+        // Calculations
+        double discountAmount = (price * discountRate) / 100;
+        double discountedPrice = price - discountAmount; // Price after discount
+        double taxAmount = (discountedPrice * taxRate) / 100;
+        double finalPrice = discountedPrice + taxAmount; // Final price including tax
+        double stockValue = finalPrice * quantity; // Total stock value
+
+        // Output
+        System.out.println("Product Details:");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Brand: " + brand);
+        System.out.println("Made in: " + madeIn);
+        System.out.println("Price per unit: Rs. " + price);
+        System.out.println("Discount Rate: " + discountRate + "%");
+        System.out.println("Tax Rate: " + taxRate + "%");
+        System.out.println("Discount Amount: Rs. " + discountAmount);
+        System.out.println("Discounted Price: Rs. " + discountedPrice);
+        System.out.println("Tax Amount: Rs. " + taxAmount);
+        System.out.println("Final Price (including tax): Rs. " + finalPrice);
+        System.out.println("Stock Value: Rs. " + stockValue);
+    }
+}
+

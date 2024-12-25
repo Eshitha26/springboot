@@ -1,0 +1,6 @@
+package com.tcs.mvc.repository;
+
+public interface ProductRepository extends JpaRepository
+{
+
+}

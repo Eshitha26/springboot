@@ -1,0 +1,32 @@
+package com.tcs.mvc.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tcs.mvc.model.ProductModel;
+import com.tcs.mvc.repository.ProductRepository;
+
+@Service
+public class ProductService {
+	@Autowired
+	ProductRepository productRepository;
+	public void saveproductdetails(ProductModel productModel) {
+
+		double stockvalue; 
+		stockvalue= productModel.getPrice()*productModel.getQuantity();
+		
+		double discountprice;
+		discountprice=productModel.getPrice()*productModel.getQuantity()/100;
+		
+		double offerprice;
+		offerprice=productModel.getPrice()-productModel.getDiscountprice();
+		
+		double taxrate;
+		taxrate=productModel.getOfferprice()*0.18;
+		
+		double finalprice;
+		finalprice=productModel.getPrice()+productModel.gettaxrate()
+	}
+}
+		
+  this.taxrate = offerprice * taxrate / 100; this.finalprice = offerprice + taxrate; this.stockvalue = finalprice * quantity; }

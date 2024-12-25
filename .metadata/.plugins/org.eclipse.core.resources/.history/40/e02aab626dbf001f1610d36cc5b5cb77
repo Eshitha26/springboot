@@ -1,0 +1,60 @@
+package com.tcs.mvc.controller;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+
+import com.tcs.mvc.entity.ProductEntity;
+import com.tcs.mvc.model.ProductModel;
+import com.tcs.mvc.service.ProductService;
+
+@Controller
+public class ProductController 
+{
+	@Autowired
+	ProductService productService;
+	private Object product;
+@GetMapping("/test")
+public String greet()
+{
+	return "myview";
+}
+@GetMapping("/productform")
+public String getProduct()
+{
+	return "add-product";
+}
+@PostMapping("/saveproduct")
+public String saveproduct(ProductModel productmodel)
+{
+	System.out.println(productmodel);
+	return "success";
+	
+}
+@GetMapping("/getallproducts")
+public String getAllProducts(Model model)
+{
+	List<ProductEntity> product=productService.getAllProducts();
+	model.addAttribute("product",product);
+	return "product-list";
+	
+}
+@GetMapping("/getsearchbyid")
+public String getsearchform()
+{
+	return "searchform";
+}
+@PostMapping("/searchbyid")
+public String searchbyid(@RequestParam Long id, Model model)
+{
+	ProductEntity product= productService.SearchById(id);
+	model.addAttribute("product", product);
+	return "searchform";
+}
+}

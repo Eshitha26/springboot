@@ -1,0 +1,70 @@
+package com.tcs.mvc.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tcs.mvc.entity.ProductEntity;
+import com.tcs.mvc.model.ProductModel;
+import com.tcs.mvc.repository.ProductRepository;
+
+@Service
+public class ProductService
+{
+	@Autowired
+	ProductRepository productRepository;
+	public void saveproductdetails(ProductModel productModel) {
+		double stockvalue;
+		   stockvalue=productModel.getPrice()*productModel.getQuantity();
+		   
+		   double discountprice;
+		   discountprice=productModel.getPrice()*productModel.getDiscountrate();
+		   
+		   double taxprice;
+	        taxprice=productModel.getPrice()*0.18;
+	        
+	 	   double offerprice;
+	       offerprice=productModel.getPrice()-discountprice;
+	        
+		   double finalprice;
+	        finalprice= offerprice+taxprice;
+	        
+	        ProductEntity productEntity=new ProductEntity();
+	        productEntity.setName(productModel.getName());
+	        productEntity.setBrand(productModel.getBrand());
+	        productEntity.setMadein(productModel.getMadein());
+	        productEntity.setPrice(productModel.getPrice());
+	        productEntity.setQuantity(productModel.getQuantity());
+	        productEntity.setDiscountrate(productModel.getDiscountrate());
+	        productEntity.setDiscountprice(discountprice);
+	        productEntity.setStockvalue(stockvalue);
+	        productEntity.setTaxrate(taxprice);
+	        productEntity.setOfferprice(offerprice); 
+	        productEntity.setFinalprice(finalprice);
+		 
+	        productRepository.save(productEntity);
+	   }
+	   public List<ProductEntity>getAllProducts()
+	   {
+		   List<ProductEntity>products=productRepository.findAll();
+		   return products;
+	   }
+	   
+	   public ProductEntity searchById(long id)
+	   {
+		   Optional<ProductEntity>optionaldata = productRepository.findById(id);
+		   if(optionaldata.isPresent())
+		   {
+			   ProductEntity product = optionaldata.get();
+			   return product;
+		   }
+		   else 
+		   {
+			return null;
+		}
+			
+		}
+}
+		
